@@ -1,0 +1,9 @@
+{
+  "name": "ranime",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "~1.4.1",
+    "foundation": "~5.5.2",
+    "angular-ui-router": "~0.2.15"
+  }
+}
