@@ -31,7 +31,7 @@
 		  	//	console.log('UH UH!');
 		  	//});
 
-		  	$http.post('/api/animes', vm.postname, 'multipart/form-data')
+		  	$http.post('/api/animes', vm.postname, 'multipart/form-data', 'application/json')
 		  		.success(function(data){
 		  			console.log('WE SEND SOMETHING TO YOU!');
 		  		}).error(function(data) {
