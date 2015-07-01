@@ -10,7 +10,6 @@ mongoose.connect('mongodb://localhost/simple');
 var Anime 		= require('./models/anime');
 
 app.use(bodyParser.json());
-app.use(bodyParser({strict:false}));
 app.use(bodyParser.urlencoded());
 
 app.use(express.static(__dirname + '/app'));
@@ -40,8 +39,7 @@ router.route('/animes')
 
 		anime.save(function(err) {
 			if(err)
-				res.send(err);
-
+				res.send(err);;
 			res.json({ message: 'Anime have been added' });
 		});
 	})

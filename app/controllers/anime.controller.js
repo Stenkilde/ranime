@@ -28,7 +28,7 @@
 			$http({
 	            method: "POST",
 	            url: '/api/animes',
-	            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	            headers: {'Content-Type': 'application/json'},
 	            data: {
 	                name: vm.postname
 	            }
@@ -38,5 +38,6 @@
 	  		}).error(function(data) {
 	  			console.log('we fucked up');
 	  		});
+	  	}
 	}
 })();
