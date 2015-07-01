@@ -1,5 +1,12 @@
-<div ng-repeat="anime in anime.data">
+<div ng-repeat="anime in main.data">
 	{{anime.name}}
 </div>
 
-{{anime.data}}
+<form ng-submit="main.postAnime()">
+	<input type="text" ng-model="main.postname">
+	<button type="submit">Submit</button>
+</form>
+
+{{main.data}}
+
+{{main.postname}}

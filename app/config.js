@@ -9,7 +9,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/',
 			templateUrl: 'views/main.template.html',
 			controller: 'AnimeController',
-			controllerAs: 'anime'
+			controllerAs: 'main'
 		})
 
 });

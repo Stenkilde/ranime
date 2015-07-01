@@ -9,8 +9,9 @@ mongoose.connect('mongodb://localhost/simple');
 
 var Anime 		= require('./models/anime');
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser({strict:false}));
+app.use(bodyParser.urlencoded());
 
 app.use(express.static(__dirname + '/app'));
 
@@ -53,7 +54,7 @@ router.route('/animes')
 		});
 	});
 
-router.route('/animes/anime_id')
+router.route('/animes/:anime_id')
 	.get(function(req, res) {
 		Anime.findById(req.params.anime_id, function(err, anime) {
 			if(err)
