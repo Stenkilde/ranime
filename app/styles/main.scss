@@ -1,0 +1,12 @@
+@import "../libs/foundation/scss/foundation";
+
+// Variables go here
+@import "variables";
+
+
+// Elements go here
+@import "elements/buttons",
+		"elements/forms";
+
+// Components go here
+@import "components/anime";

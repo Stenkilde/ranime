@@ -1,0 +1,30 @@
+$primary-color: #ee9dc3;
+
+
+
+
+// In variables you can also write utilities if you have a maximum of FIVE utilities
+
+// Collapsed will make sure your padding on columns collapse, which is why we use Important
+// -- Same goes for l-collapsed and r-collapsed.
+// -- l => left
+// -- r => right
+.collapsed {
+	padding: 0 !important;
+}
+
+.l-collapsed {
+	padding-left: 0 !important;
+}
+
+.r-collapsed {
+	padding-right: 0 !important;
+}
+
+.m-b-collapsed {
+	margin-bottom: 0 !important;
+}
+
+.clearfix {
+	@include clearfix();
+}

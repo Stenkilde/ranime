@@ -1,12 +1,19 @@
-<div ng-repeat="anime in main.data">
-	{{anime.name}}
+<div class="anime">
+	<div class="row">
+		<div class="small-12 columns collapsed">
+			<form ng-submit="main.postAnime()" class="clearfix">
+				<div class="small-7 columns l-collapsed">
+					<input class="small m-b-collapsed" type="text" ng-model="main.postname">
+				</div>
+				<div class="small-5 columns r-collapsed">
+					<button class="button small m-b-collapsed primary expand" type="submit">Submit</button>
+				</div>
+			</form>
+
+
+			<div ng-repeat="anime in main.data">
+				{{anime.name}}
+			</div>
+		</div>
+	</div>
 </div>
-
-<form ng-submit="main.postAnime()">
-	<input type="text" ng-model="main.postname">
-	<button type="submit">Submit</button>
-</form>
-
-{{main.data}}
-
-{{main.postname}}
