@@ -1,8 +1,13 @@
 .anime {
 	@include grid-row();
 
-	padding-top: 30px;
+	min-height: 500px;
+
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
-	background-color: tomato;
+	background-color: $secondary-color;
+
+	h1 {
+		font-size: 36px;
+	}
 }

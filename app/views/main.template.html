@@ -1,19 +1,21 @@
 <div class="anime">
+	<h1 class="text-center">Ranime! - The cool Anime Randomizer!</h1>
 	<div class="row">
 		<div class="small-12 columns collapsed">
-			<form ng-submit="main.postAnime()" class="clearfix">
+			<form name="animeForm" ng-submit="main.postAnime()" class="clearfix">
 				<div class="small-7 columns l-collapsed">
-					<input class="small m-b-collapsed" type="text" ng-model="main.postname">
+					<input class="small m-b-collapsed" type="text" ng-model="main.postname" required>
 				</div>
 				<div class="small-5 columns r-collapsed">
-					<button class="button small m-b-collapsed primary expand" type="submit">Submit</button>
+					<button ng-disabled="animeForm.$invalid" class="button small m-b-collapsed primary expand" type="submit">Submit</button>
 				</div>
 			</form>
 
 
-			<div ng-repeat="anime in main.data">
-				{{anime.name}}
-			</div>
+			<ul class="anime-list">
+				<li ng-repeat="anime in main.data">{{anime.name}}</li>
+			</ul>
 		</div>
+		<button class="button" ng-click="main.randomAnime()">Randomize!</button>
 	</div>
 </div>

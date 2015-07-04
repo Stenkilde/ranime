@@ -6,13 +6,14 @@
 		.controller('AnimeController', ctrl);
 
 	/* @ngInject */
-	function ctrl($http) {
+	function ctrl($http, $state) {
 		/*jshint validthis: true */
 		var vm 			= this;
 
 		vm.postname		= null;
 		vm.data			= {};
 		vm.postAnime	= postAnime;
+		vm.randomAnime	= randomAnime;
 
 		$http.get('/api/animes').
 		  success(function(data, status, headers, config) {
@@ -34,10 +35,14 @@
 	            }
 	        })
 	        .success(function(data){
-	  			console.log('It should work yep!');
+	  			$state.go($state.current, {}, {reload: true});
 	  		}).error(function(data) {
-	  			console.log('we fucked up');
+	  			alert('Erro!: You did something wrong!');
 	  		});
+	  	}
+	  	function randomAnime() {
+  			var randomizeAnime = vm.data[Math.floor(Math.random() * vm.data.length)];
+  			alert('You should totally watch ' + randomizeAnime.name + '!');
 	  	}
 	}
 })();

@@ -1,3 +1,13 @@
 .button {
 	background: $primary-color;
+	color: $primary-text-color;
+	&:hover {
+		background: darken($primary-color, 10%);
+	}
+	&:disabled {
+		background: gray;
+		&:hover {
+			background: darken(gray, 10%);
+		}
+	}
 }
