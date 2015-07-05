@@ -15,8 +15,14 @@
 		vm.postAnime	= postAnime;
 		vm.randomAnime	= randomAnime;
 		vm.login		= login;
+		vm.logout		= logout;
 		vm.handleError	= handleError;
 
+
+		// Initialize view
+		UserFactory.getUser().then(function success(response) {
+			vm.user = response.data;
+		});
 
 		$http.get('/api/animes').
 		  success(function(data, status, headers, config) {
@@ -49,10 +55,15 @@
 
 
 		function login(username, password) {
-			UserFactory.login(vm.username, vm.password).then(function success(response) {
-				vm.user = response.data;
-			}, handleError);
-		}
+	      	UserFactory.login(vm.username, vm.password).then(function success(response) {
+	        	vm.user = response.data.user;
+	      	}, handleError);
+	    }
+
+	    function logout() {
+	    	UserFactory.logout();
+	    	vm.user = null;
+	    }
 
 		function handleError(response) {
 			alert('Error: ' + response.data);

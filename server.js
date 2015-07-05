@@ -5,21 +5,21 @@ var bodyParser	= require('body-parser');
 var app			= express();
 var port 		= 1337;
 var jwt			= require('jsonwebtoken');
+var expressJwt	= require('express-jwt');
 
 var jwtSecret	= 'randomshittoken12345';
 
 mongoose.connect('mongodb://localhost/simple');
 
 var user = {
-	username: 'admin',
-	password: 'lol'
+	username: 'wewatchanime',
+	password: 'wearebadass'
 };
 
 var Anime 		= require('./models/anime');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-
 app.use(express.static(__dirname + '/app'));
 
 app.get('/', function(req, res) {
@@ -28,12 +28,16 @@ app.get('/', function(req, res) {
 
 app.post('/login', authenticate, function(req, res) {
 	var token = jwt.sign({
-		username: username
+		username: user.username
 	}, jwtSecret);
 	res.send({
 		token: token,
 		user: user
 	});
+});
+
+app.get('/me', function (req, res) {
+	res.send(user);
 });
 
 // Router setup
@@ -108,9 +112,6 @@ function authenticate(req, res, next) {
 	}
 	if(body.username !== user.username || body.password !== user.password) {
 		res.status(401).end('Username or password is incorrect');
-	}
-	if(body.username == user.username || body.password == user.password) {
-		res.status(200).end('It worked weeeeh!');
 	}
 	next();
 }
