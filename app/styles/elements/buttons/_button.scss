@@ -4,6 +4,9 @@
 	&:hover {
 		background: darken($primary-color, 10%);
 	}
+	&:focus, &:active {
+		background: darken($primary-color, 15%);
+	}
 	&:disabled {
 		background: gray;
 		&:hover {

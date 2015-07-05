@@ -6,7 +6,7 @@
 		.controller('AnimeController', ctrl);
 
 	/* @ngInject */
-	function ctrl($http, $state) {
+	function ctrl($http, $state, UserFactory) {
 		/*jshint validthis: true */
 		var vm 			= this;
 
@@ -14,15 +14,17 @@
 		vm.data			= {};
 		vm.postAnime	= postAnime;
 		vm.randomAnime	= randomAnime;
+		vm.login		= login;
+		vm.handleError	= handleError;
+
 
 		$http.get('/api/animes').
 		  success(function(data, status, headers, config) {
 		  	vm.data = data;
-		    console.log(data);
 		  }).
 		  error(function(data, status, headers, config) {
 			console.log('You fucked up!');
-		  })
+		  });
 	  	
 		function postAnime() {
 			console.log(vm.postname);
@@ -44,5 +46,16 @@
   			var randomizeAnime = vm.data[Math.floor(Math.random() * vm.data.length)];
   			alert('You should totally watch ' + randomizeAnime.name + '!');
 	  	}
+
+
+		function login(username, password) {
+			UserFactory.login(vm.username, vm.password).then(function success(response) {
+				vm.user = response.data;
+			}, handleError);
+		}
+
+		function handleError(response) {
+			alert('Error: ' + response.data);
+		}
 	}
 })();

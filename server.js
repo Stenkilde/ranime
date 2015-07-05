@@ -7,6 +7,11 @@ var port 		= 1337;
 
 mongoose.connect('mongodb://localhost/simple');
 
+var user = {
+	username: 'admin',
+	password: 'lol'
+};
+
 var Anime 		= require('./models/anime');
 
 app.use(bodyParser.json());
@@ -16,6 +21,10 @@ app.use(express.static(__dirname + '/app'));
 
 app.get('/', function(req, res) {
 	res.sendfile('./app/index.html');
+});
+
+app.post('/login', authenticate, function(req, res) {
+	res.send(user);
 });
 
 // Router setup
@@ -79,3 +88,20 @@ app.use('/api', router);
 // Start the server
 app.listen(port);
 console.log('We are up and running!');
+
+
+// Util functions
+
+function authenticate(req, res, next) {
+	var body = req.body;
+	if(!body.username || !body.password) {
+		res.status(400).end('Must provide a username & password');
+	}
+	if(body.username !== user.username || body.password !== user.password) {
+		res.status(401).end('Username or password is incorrect');
+	}
+	if(body.username == user.username || body.password == user.password) {
+		res.status(200).end('It worked weeeeh!');
+	}
+	next();
+}
