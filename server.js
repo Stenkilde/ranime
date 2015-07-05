@@ -4,6 +4,9 @@ var mongoose	= require('mongoose');
 var bodyParser	= require('body-parser');
 var app			= express();
 var port 		= 1337;
+var jwt			= require('jsonwebtoken');
+
+var jwtSecret	= 'randomshittoken12345';
 
 mongoose.connect('mongodb://localhost/simple');
 
@@ -24,7 +27,13 @@ app.get('/', function(req, res) {
 });
 
 app.post('/login', authenticate, function(req, res) {
-	res.send(user);
+	var token = jwt.sign({
+		username: username
+	}, jwtSecret);
+	res.send({
+		token: token,
+		user: user
+	});
 });
 
 // Router setup
